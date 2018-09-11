@@ -22,7 +22,6 @@ LOG = logger.get_root_logger(os.environ.get(
 # Port variable to run the server on.
 PORT = 5000
 
-
 @app.errorhandler(404)
 def not_found(error):
     """ error handler """
@@ -30,11 +29,12 @@ def not_found(error):
     return render_template('index.html')
 
 
-@app.route("/index", methods=["GET"])
-@app.route("/", methods=["GET"])
+@app.route("/index")
+@app.route("/")
 def index():
     """ static files serve """
-    return render_template('index.html')
+    # return render_template('index.html', title="Welcome welcome welcome")
+    return "Hellow, welcome welcome welcome"
 
 
 @app.route('/<path:path>')
