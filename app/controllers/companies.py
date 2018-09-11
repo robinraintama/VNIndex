@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 from flask import request, jsonify                       
 from app import app, mongo
 from bson import json_util
@@ -18,7 +19,7 @@ def companies():
     remove_id_param = {'_id': 0}
 
     if request.args.get('company_name') is not None:
-    	find_param['company name'] = request.args.get('company_name')
+    	find_param['company name'] = re.compile(request.args.get('company_name'), re.IGNORECASE)
     if request.args.get('business') is not None:
     	find_param['business'] = request.args.get('business')
     if request.args.get('revenue_gte') is not None:
